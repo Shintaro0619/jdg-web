@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Japan Disaster Guide</title>
+<style>
+  body{margin:0;font-family:-apple-system,'Segoe UI',Roboto,'Hiragino Sans',sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7}
+  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 80px}
+  h1{font-size:26px;margin:24px 0 4px}
+  h2{font-size:19px;margin:36px 0 8px;border-bottom:1px solid #334155;padding-bottom:6px}
+  h3{font-size:16px;margin:24px 0 6px;color:#cbd5e1}
+  p,li{font-size:15px;color:#cbd5e1}
+  .muted{color:#94a3b8;font-size:13px}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0}
+  th,td{border:1px solid #334155;padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#1e293b;color:#e2e8f0}
+  a{color:#60a5fa}
+  .toc a{margin-right:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="toc"><a href="#en">English</a><a href="#ja">日本語</a></p>
+
+<h1 id="en">Privacy Policy</h1>
+<p class="muted">Japan Disaster Guide — Last updated: 2026-07-07<br>
+Operator: Shintaro Soyama (individual) · Contact: contact@tokyo-ridge.com</p>
+
+<h2>1. Summary</h2>
+<ul>
+  <li>No account or sign-up is required. We do not use advertising, analytics, or tracking SDKs.</li>
+  <li>Your precise location is used <strong>on your device</strong> to find nearby shelters and local weather warnings. It is not stored on our servers.</li>
+  <li>The optional <strong>live safety sharing</strong> feature sends your safety status — and, only while you enable location sharing during a disaster, an approximate location (rounded to about 1&nbsp;km) — to our server so that people who hold your share link can view it. Sessions expire automatically after 72 hours and are then deleted.</li>
+  <li>Purchases are processed entirely by Apple. We never receive your payment details.</li>
+</ul>
+
+<h2>2. Data we handle and why</h2>
+<table>
+  <tr><th>Data</th><th>Purpose</th><th>Where it goes / retention</th></tr>
+  <tr><td>Precise location (while using the App)</td><td>Show nearby evacuation shelters; select your regional weather-warning area</td><td>Used on your device to query public data. Coordinates are sent to our database only as a search query and are not stored</td></tr>
+  <tr><td>Display name you enter for a share link</td><td>Shown to the people you send your share link to</td><td>Our server (Supabase, hosted in Tokyo). Deleted with the session (72&nbsp;h after creation)</td></tr>
+  <tr><td>Safety status and optional message</td><td>Shown on your share-link page</td><td>Same as above</td></tr>
+  <tr><td>Approximate location (rounded to ~1&nbsp;km)</td><td>Shown on your share-link page <strong>only while you turn location sharing ON during an active disaster</strong>; removed from the page when you turn it OFF</td><td>Same as above</td></tr>
+  <tr><td>Emergency info (blood type, allergies)</td><td>Your own emergency cards</td><td><strong>Your device only.</strong> Never uploaded</td></tr>
+  <tr><td>Purchase state (one-time unlock)</td><td>Unlock premium features</td><td>Processed by Apple. We store only an unlock flag on your device</td></tr>
+</table>
+
+<h2>3. Live safety sharing — principles</h2>
+<ul>
+  <li>Sharing starts only when you create a share link, and stops when you stop it (or automatically after 72 hours).</li>
+  <li>The link you send is <strong>view-only</strong>. Recipients cannot change your status or location.</li>
+  <li>Location on the share page is coarse (about 1&nbsp;km) and is only included while you enable location sharing during an active disaster. Turning it off also removes the previously shown location.</li>
+  <li>Expired sessions are physically deleted from our database.</li>
+</ul>
+
+<h2>4. Third parties</h2>
+<ul>
+  <li><strong>Apple</strong> — payment processing for in-app purchases.</li>
+  <li><strong>Supabase</strong> — database hosting for shelters data and share sessions (region: Tokyo).</li>
+  <li><strong>GitHub Pages</strong> — hosts the static share-view web page.</li>
+  <li><strong>Data sources</strong> — shelter data from the Geospatial Information Authority of Japan (GSI); weather warnings from the Japan Meteorological Agency (JMA). Requests to fetch warnings go directly from your device to JMA's public servers.</li>
+</ul>
+<p>We do not sell personal data, and we do not share it with anyone except as described above.</p>
+
+<h2>5. Your choices and rights</h2>
+<ul>
+  <li>Location permission is optional; the App works without it (with reduced functionality).</li>
+  <li>You can stop a share session at any time in the Family tab.</li>
+  <li>To ask questions or request deletion of data related to a share session, contact us at <a href="mailto:contact@tokyo-ridge.com">contact@tokyo-ridge.com</a>.</li>
+</ul>
+
+<h2>6. Children</h2>
+<p>The App is not directed at children under 13 and we do not knowingly collect personal data from them.</p>
+
+<h2>7. Changes</h2>
+<p>We will update this page when the App's data practices change. Material changes will be noted in the App's release notes.</p>
+
+<hr style="border-color:#334155;margin:48px 0">
+
+<h1 id="ja">プライバシーポリシー</h1>
+<p class="muted">Japan Disaster Guide — 最終更新: 2026-07-07<br>
+運営者: 想山慎太郎（個人） · 連絡先: contact@tokyo-ridge.com</p>
+
+<h2>1. 概要</h2>
+<ul>
+  <li>アカウント登録は不要です。広告・アクセス解析・トラッキングSDKは使用していません。</li>
+  <li>正確な位置情報は、近くの避難所検索と気象警報の地域判定のために<strong>端末上で</strong>使用します。当方のサーバーには保存されません。</li>
+  <li>任意機能の<strong>ライブ安否共有</strong>では、安否ステータスと（災害時に位置共有をONにしている間のみ）約1km単位に丸めたおおよその位置をサーバーに送信し、共有リンクを受け取った人が閲覧できるようにします。セッションは72時間で自動失効し、その後削除されます。</li>
+  <li>課金はすべてAppleが処理します。当方がお支払い情報を受け取ることはありません。</li>
+</ul>
+
+<h2>2. 取り扱うデータと目的</h2>
+<table>
+  <tr><th>データ</th><th>目的</th><th>送信先・保持</th></tr>
+  <tr><td>正確な位置情報（アプリ使用中）</td><td>近くの避難所の表示、気象警報の地域判定</td><td>端末上で公共データの検索に使用。座標は検索クエリとしてのみ送信され、保存されません</td></tr>
+  <tr><td>共有リンク用に入力した表示名</td><td>共有リンクの閲覧者への表示</td><td>当方サーバー（Supabase・東京リージョン）。セッション終了（作成から72時間）とともに削除</td></tr>
+  <tr><td>安否ステータス・任意メッセージ</td><td>共有リンクページへの表示</td><td>同上</td></tr>
+  <tr><td>おおよその位置（約1km単位に丸め）</td><td><strong>災害発生中に位置共有をONにしている間のみ</strong>共有ページに表示。OFFにするとページから削除</td><td>同上</td></tr>
+  <tr><td>緊急情報（血液型・アレルギー）</td><td>ご自身の緊急カード表示</td><td><strong>端末内のみ。</strong>アップロードされません</td></tr>
+  <tr><td>購入状態（買い切りアンロック）</td><td>プレミアム機能の解放</td><td>Appleが処理。当方は解放フラグを端末に保存するのみ</td></tr>
+</table>
+
+<h2>3. ライブ安否共有の原則</h2>
+<ul>
+  <li>共有はあなたがリンクを発行したときにのみ開始され、停止操作（または72時間の自動失効）で終了します。</li>
+  <li>送付するリンクは<strong>閲覧専用</strong>です。受け取った人があなたの安否や位置を書き換えることはできません。</li>
+  <li>共有ページの位置は約1kmの粗い精度で、災害発生中に位置共有をONにしている間だけ表示されます。OFFにすると表示済みの位置も消えます。</li>
+  <li>失効したセッションはデータベースから物理削除されます。</li>
+</ul>
+
+<h2>4. 第三者サービス</h2>
+<ul>
+  <li><strong>Apple</strong> — アプリ内課金の決済処理</li>
+  <li><strong>Supabase</strong> — 避難所データ・共有セッションのデータベースホスティング（東京リージョン）</li>
+  <li><strong>GitHub Pages</strong> — 安否共有の閲覧ページ（静的サイト）のホスティング</li>
+  <li><strong>データ出典</strong> — 避難所データ: 国土地理院「指定緊急避難場所データ」／気象警報: 気象庁。警報の取得リクエストは端末から気象庁の公開サーバーへ直接送信されます</li>
+</ul>
+<p>個人データを販売することはなく、上記以外の第三者に提供することもありません。</p>
+
+<h2>5. ユーザーの選択と権利</h2>
+<ul>
+  <li>位置情報の許可は任意です（許可しなくても機能を制限してアプリを利用できます）。</li>
+  <li>共有セッションはFamilyタブからいつでも停止できます。</li>
+  <li>共有セッションに関するデータの削除依頼・お問い合わせは <a href="mailto:contact@tokyo-ridge.com">contact@tokyo-ridge.com</a> までご連絡ください。</li>
+</ul>
+
+<h2>6. 児童のプライバシー</h2>
+<p>本アプリは13歳未満の児童を対象としておらず、児童の個人データを故意に収集することはありません。</p>
+
+<h2>7. 変更</h2>
+<p>データの取り扱いに変更がある場合は本ページを更新します。重要な変更はアプリのリリースノートでお知らせします。</p>
+
+</div>
+</body>
+</html>
