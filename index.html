@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Safety Status</title>
+<style>
+  body{margin:0;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#0f172a;color:#e2e8f0;
+       display:flex;justify-content:center;align-items:center;min-height:100vh;padding:16px;box-sizing:border-box}
+  .card{background:#1e293b;border-radius:16px;padding:28px;max-width:420px;width:100%;text-align:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:22px;font-weight:700;
+         padding:10px 22px;border-radius:999px;margin:14px 0}
+  .name{font-size:18px;font-weight:600}
+  .msg{font-size:15px;color:#cbd5e1;margin-top:12px;line-height:1.5}
+  .meta{font-size:13px;color:#94a3b8;margin-top:16px;line-height:1.7}
+  a{color:#60a5fa}
+</style>
+</head>
+<body>
+<div class="card" id="card"><p>Loading&hellip;</p></div>
+<script>
+// 安否共有ビューア（静的版）。share_get RPC は view_token を知る人だけが読める read-only API。
+// anon キーは公開前提の値（アプリにも同梱されているもの）。
+var SUPABASE_URL = 'https://lqfjhknvvewcmimuiydz.supabase.co';
+var ANON_KEY = 'sb_publishable_zAl6E0sCEjz30dO2XzWAtg_hvrvLHYO';
+
+var STATUS_META = {
+  safe:       { en: 'Safe',       ja: '無事です',   color: '#22c55e', icon: '✔' },
+  evacuating: { en: 'Evacuating', ja: '避難中',     color: '#f59e0b', icon: '↗' },
+  needHelp:   { en: 'Needs help', ja: '助けが必要', color: '#ef4444', icon: '⚠' },
+  moving:     { en: 'Moving',     ja: '移動中',     color: '#3b82f6', icon: '→' },
+  unknown:    { en: 'Unknown',    ja: '不明',       color: '#6b7280', icon: '?' }
+};
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+function render(html) { document.getElementById('card').innerHTML = html; }
+
+function load() {
+  var token = new URLSearchParams(location.search).get('t') || '';
+  if (!/^[0-9a-f]{32}$/.test(token)) {
+    render('<p>Invalid link. / リンクが正しくありません。</p>');
+    return;
+  }
+  fetch(SUPABASE_URL + '/rest/v1/rpc/share_get', {
+    method: 'POST',
+    headers: {
+      'apikey': ANON_KEY,
+      'Authorization': 'Bearer ' + ANON_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ in_view_token: token })
+  })
+    .then(function (r) { return r.json(); })
+    .then(function (rows) {
+      var row = rows && rows[0];
+      if (!row) {
+        render('<p>This share link has expired or was stopped.<br>この共有リンクは終了しました。</p>');
+        return;
+      }
+      var meta = STATUS_META[row.status] || STATUS_META.unknown;
+      var updated = new Date(row.updated_at).toLocaleString('en-GB', { timeZone: 'Asia/Tokyo' });
+      var mapLink = (row.area_lat != null && row.area_lng != null)
+        ? '<a href="https://maps.google.com/?q=' + row.area_lat + ',' + row.area_lng +
+          '" target="_blank" rel="noopener">View approximate area / おおよその位置</a>'
+        : '';
+      var battery = row.battery != null ? ' &middot; Battery ' + row.battery + '%' : '';
+      render(
+        '<div class="name">' + esc(row.display_name) + '</div>' +
+        '<div class="badge" style="background:' + meta.color + '22;color:' + meta.color + '">' +
+          meta.icon + ' ' + meta.en + ' / ' + meta.ja + '</div>' +
+        (row.message ? '<div class="msg">' + esc(row.message) + '</div>' : '') +
+        '<div class="meta">Updated ' + esc(updated) + ' (JST)' + battery + '<br>' + mapLink +
+        '<br>Auto-refreshes every 30s / 30秒ごとに自動更新</div>'
+      );
+    })
+    .catch(function () {
+      render('<p>Could not load. Check your connection.<br>読み込めませんでした。通信環境をご確認ください。</p>');
+    });
+}
+
+load();
+setInterval(load, 30000);
+</script>
+</body>
+</html>
