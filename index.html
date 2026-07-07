@@ -41,10 +41,14 @@ function esc(s) {
 
 function render(html) { document.getElementById('card').innerHTML = html; }
 
+var timer = null;
+function stopPolling() { if (timer) { clearInterval(timer); timer = null; } }
+
 function load() {
   var token = new URLSearchParams(location.search).get('t') || '';
   if (!/^[0-9a-f]{32}$/.test(token)) {
     render('<p>Invalid link. / リンクが正しくありません。</p>');
+    stopPolling();
     return;
   }
   fetch(SUPABASE_URL + '/rest/v1/rpc/share_get', {
@@ -61,15 +65,18 @@ function load() {
       var row = rows && rows[0];
       if (!row) {
         render('<p>This share link has expired or was stopped.<br>この共有リンクは終了しました。</p>');
+        stopPolling(); // 終了後は再取得しない
         return;
       }
       var meta = STATUS_META[row.status] || STATUS_META.unknown;
       var updated = new Date(row.updated_at).toLocaleString('en-GB', { timeZone: 'Asia/Tokyo' });
-      var mapLink = (row.area_lat != null && row.area_lng != null)
-        ? '<a href="https://maps.google.com/?q=' + row.area_lat + ',' + row.area_lng +
+      // 数値列は Number 化して有限値のみ使う（型崩れデータの注入防止）
+      var lat = Number(row.area_lat), lng = Number(row.area_lng), bat = Number(row.battery);
+      var mapLink = (isFinite(lat) && isFinite(lng) && row.area_lat != null)
+        ? '<a href="https://maps.google.com/?q=' + lat + ',' + lng +
           '" target="_blank" rel="noopener">View approximate area / おおよその位置</a>'
         : '';
-      var battery = row.battery != null ? ' &middot; Battery ' + row.battery + '%' : '';
+      var battery = (isFinite(bat) && row.battery != null) ? ' &middot; Battery ' + bat + '%' : '';
       render(
         '<div class="name">' + esc(row.display_name) + '</div>' +
         '<div class="badge" style="background:' + meta.color + '22;color:' + meta.color + '">' +
@@ -85,7 +92,7 @@ function load() {
 }
 
 load();
-setInterval(load, 30000);
+timer = setInterval(load, 30000);
 </script>
 </body>
 </html>
