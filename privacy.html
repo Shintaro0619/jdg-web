@@ -24,13 +24,14 @@
 <p class="toc"><a href="#en">English</a><a href="#ja">日本語</a></p>
 
 <h1 id="en">Privacy Policy</h1>
-<p class="muted">Japan Disaster Guide — Last updated: 2026-07-31<br>
+<p class="muted">Japan Disaster Guide — Last updated: 2026-09-22<br>
 Operator: Shintaro Soyama (individual) · Contact: contact@tokyo-ridge.com</p>
 
 <h2>1. Summary</h2>
 <ul>
   <li>No account or sign-up is required. We do not use advertising, analytics, or tracking SDKs.</li>
   <li>Your precise location is used to find nearby shelters and local warnings. It is sent to our database only as a search query and is <strong>not stored</strong>.</li>
+  <li>To tell whether you are in Japan and which prefecture you are in, the App asks your device's operating system to convert your coordinates into a country code and region name (Apple or Google reverse geocoding, depending on your device). The App keeps only that country code and region name, in memory, as a short-lived cache reused for up to 5 minutes; it is released at the next lookup after that or when the App closes, is never written to storage, and is never sent to our servers.</li>
   <li>If you turn on <strong>Priority alerts</strong>, we store a notification token together with the forecast areas you watch, your language, and the earthquake intensity threshold you choose, so that we can send you earthquake, tsunami and weather alerts.</li>
   <li>The optional <strong>"Follow me as I travel"</strong> setting uses background location. Your device converts the position into a forecast-area code (roughly a prefecture) and sends only that code — never your coordinates.</li>
   <li>The optional <strong>live safety sharing</strong> feature sends your safety status — and, only while you enable location sharing during a disaster, an approximate location (rounded to about 1&nbsp;km) — to our server so that people who hold your share link can view it. The link stops working 72 hours after you create it, and the record is deleted 24 hours after that.</li>
@@ -41,6 +42,7 @@ Operator: Shintaro Soyama (individual) · Contact: contact@tokyo-ridge.com</p>
 <table>
   <tr><th>Data</th><th>Purpose</th><th>Where it goes / retention</th></tr>
   <tr><td>Precise location (while using the App)</td><td>Show nearby evacuation shelters; select your regional warning area</td><td>Used on your device to query public data. Coordinates are sent to our database only as a search query and are not stored</td></tr>
+  <tr><td>Country code and region name derived from your coordinates (reverse geocoding)</td><td>Decide whether you are in Japan and which forecast area applies to your current location</td><td>Your device requests the conversion from the platform geocoding service (Apple or Google). Only the country code and region name are kept, in the App's memory, reused for up to 5 minutes and released at the next lookup after that or when the App closes. Never sent to our servers</td></tr>
   <tr><td>Notification token, language, earthquake intensity threshold, and up to 12 forecast-area codes</td><td>Send you earthquake, tsunami and weather alerts for the areas you watch</td><td>Our server (Supabase, hosted in Tokyo), and the Expo Push Service / Apple Push Notification service for delivery. Kept while Priority alerts are on; deleted when you turn them off, or when a notification we send is rejected because that device no longer accepts notifications</td></tr>
   <tr><td>Background location (only if you choose "Always" and turn on "Follow me as I travel")</td><td>Keep alerts aimed at where you actually are while you travel</td><td>Converted <strong>on your device</strong> into a forecast-area code. Only the code is sent, replacing the previous one. We do not store coordinates, a location history or a track</td></tr>
   <tr><td>Display name you enter for a share link</td><td>Shown to the people you send your share link to</td><td>Our server (Supabase, hosted in Tokyo). Not viewable after 72&nbsp;h; deleted 24&nbsp;h later</td></tr>
@@ -73,6 +75,7 @@ Operator: Shintaro Soyama (individual) · Contact: contact@tokyo-ridge.com</p>
 <ul>
   <li><strong>Apple</strong> — payment processing for in-app purchases; Apple Push Notification service for delivering alerts.</li>
   <li><strong>Expo Push Service</strong> — relays our alerts to Apple Push Notification service.</li>
+  <li><strong>Apple / Google (device operating system)</strong> — reverse geocoding of your coordinates to a country code and region name, requested by your device to decide whether you are in Japan and which forecast area applies. Subject to the platform's own privacy policy.</li>
   <li><strong>Supabase</strong> — database hosting for shelters data, alert registrations and share sessions (region: Tokyo).</li>
   <li><strong>GitHub Pages</strong> — hosts the static share-view web page.</li>
   <li><strong>Data sources</strong> — shelter data from the Geospatial Information Authority of Japan (GSI); earthquake, tsunami and weather information from the Japan Meteorological Agency (JMA). These requests carry no personal data.</li>
@@ -96,13 +99,14 @@ Operator: Shintaro Soyama (individual) · Contact: contact@tokyo-ridge.com</p>
 <hr style="border-color:#334155;margin:48px 0">
 
 <h1 id="ja">プライバシーポリシー</h1>
-<p class="muted">Japan Disaster Guide — 最終更新: 2026-07-31<br>
+<p class="muted">Japan Disaster Guide — 最終更新: 2026-09-22<br>
 運営者: 惣山慎太郎（個人） · 連絡先: contact@tokyo-ridge.com</p>
 
 <h2>1. 概要</h2>
 <ul>
   <li>アカウント登録は不要です。広告・アクセス解析・トラッキングSDKは使用していません。</li>
   <li>正確な位置情報は、近くの避難所検索と警報の地域判定に使用します。当方データベースへは検索クエリとしてのみ送信し、<strong>保存はしません</strong>。</li>
+  <li>日本国内にいるか、どの都道府県にいるかを判定するため、端末のOS機能（端末によりAppleまたはGoogleの逆ジオコーディング）で座標を国コードと地域名に変換します。アプリが保持するのは変換結果の国コードと地域名のみで、端末のメモリ上に短期キャッシュとして置き、5分以内の再利用に限ります。期限後の次回参照時またはアプリ終了時に解放され、端末のストレージには書き込まず、当方のサーバーにも送信しません。</li>
   <li><strong>優先アラート</strong>をONにすると、地震・津波・気象の通知を送るために、通知トークン・監視予報区・言語・震度しきい値を保存します。</li>
   <li>任意設定の<strong>「移動に合わせて追随」</strong>はバックグラウンドの位置情報を使います。位置は<strong>端末内で</strong>予報区コード（おおむね県単位）に変換し、そのコードだけを送信します。座標は送信しません。</li>
   <li>任意機能の<strong>ライブ安否共有</strong>では、安否ステータスと（災害時に位置共有をONにしている間のみ）約1km単位に丸めたおおよその位置をサーバーに送信し、共有リンクを受け取った人が閲覧できるようにします。リンクは作成から72時間で閲覧できなくなり、その24時間後に記録を削除します。</li>
@@ -113,6 +117,7 @@ Operator: Shintaro Soyama (individual) · Contact: contact@tokyo-ridge.com</p>
 <table>
   <tr><th>データ</th><th>目的</th><th>送信先・保持</th></tr>
   <tr><td>正確な位置情報（アプリ使用中）</td><td>近くの避難所の表示、警報の地域判定</td><td>端末上で公共データの検索に使用。座標は検索クエリとしてのみ送信され、保存されません</td></tr>
+  <tr><td>座標から変換した国コードと地域名（逆ジオコーディング）</td><td>日本国内にいるかの判定と、現在地に対応する予報区の決定</td><td>端末がプラットフォームのジオコーディング（AppleまたはGoogle）に変換を要求。保持するのは国コードと地域名のみで、アプリのメモリ上に置き、5分以内の再利用に限ります。期限後の次回参照時またはアプリ終了時に解放。当方サーバーには送信しません</td></tr>
   <tr><td>通知トークン・言語・震度しきい値・監視予報区（最大12件）</td><td>監視している地域の地震・津波・気象の通知を届ける</td><td>当方サーバー（Supabase・東京リージョン）。配信は Expo Push Service および Apple プッシュ通知サービスを経由。優先アラートがONの間保持し、OFFにすると削除。送信した通知が「この端末は通知を受け付けない」として拒否された場合も削除</td></tr>
   <tr><td>バックグラウンドの位置情報（「常に許可」を選び「移動に合わせて追随」をONにした場合のみ）</td><td>移動しても現在地に合った通知を届ける</td><td><strong>端末内で</strong>予報区コードへ変換し、そのコードだけを送信して従来の値と置き換えます。座標・位置履歴・移動経路は保存しません</td></tr>
   <tr><td>共有リンク用に入力した表示名</td><td>共有リンクの閲覧者への表示</td><td>当方サーバー（Supabase・東京リージョン）。72時間で閲覧不可、その24時間後に削除</td></tr>
@@ -145,6 +150,7 @@ Operator: Shintaro Soyama (individual) · Contact: contact@tokyo-ridge.com</p>
 <ul>
   <li><strong>Apple</strong> — アプリ内課金の決済処理、および Apple プッシュ通知サービスによる通知配信</li>
   <li><strong>Expo Push Service</strong> — 当方の通知を Apple プッシュ通知サービスへ中継</li>
+  <li><strong>Apple / Google（端末のOS）</strong> — 座標から国コード・地域名への逆ジオコーディング。日本国内かどうかと現在地の予報区を判定するために端末が要求。各プラットフォームのプライバシーポリシーが適用されます</li>
   <li><strong>Supabase</strong> — 避難所データ・通知登録・共有セッションのデータベースホスティング（東京リージョン）</li>
   <li><strong>GitHub Pages</strong> — 安否共有の閲覧ページ（静的サイト）のホスティング</li>
   <li><strong>データ出典</strong> — 避難所データ: 国土地理院「指定緊急避難場所データ」／地震・津波・気象情報: 気象庁。これらの取得要求に個人データは含まれません</li>
